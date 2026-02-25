@@ -1,0 +1,3 @@
+variable "instacetype" {
+  default = "dev"
+}
