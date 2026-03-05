@@ -53,7 +53,7 @@ resource "aws_security_group_rule" "rabbitmq" {
   
 }
 
-resource "aws_security_group_rule" "rabbitmq_egress" {
+resource "aws_security_group_rule" "r_egress" {
   type              = "egress"
   security_group_id = local.reddis_security_group_id
   from_port         = 0
