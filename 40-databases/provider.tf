@@ -8,7 +8,7 @@ terraform {
 
   backend "s3" {
     bucket = "eshurr"
-    key    = "databases"
+    key    = "databases-new"
     region = "us-east-1"
   }
 }
