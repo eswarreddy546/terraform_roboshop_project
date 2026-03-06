@@ -14,3 +14,7 @@ data "aws_ssm_parameter" "reddis_security_group_id" {
 data "aws_ssm_parameter" "rabbitmq_security_group_id" {
   name = "/${var.project_name}/${var.environment}/rabbitmq_security_group_id"
 }
+
+data "aws_ssm_parameter" "mysql_security_group_id" {
+   name = "/${var.project_name}/${var.environment}/mysql_security_group_id"
+ }

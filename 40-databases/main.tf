@@ -130,3 +130,56 @@ resource "aws_route53_record" "rabbitmq" {
   records = [aws_instance.rabbitmq.private_ip]
   allow_overwrite = true
 }
+
+#mysql 
+
+
+resource "aws_instance" "mysql" {
+  ami                    = "ami-0220d79f3f480ecf5"
+  instance_type          = "t3.micro"
+  vpc_security_group_ids = [local.mysql_security_group_id]
+  subnet_id              = local.database_subnetsg
+  iam_instance_profile   = aws_iam_instance_profile.mysql.name
+
+  
+}
+
+resource "aws_iam_instance_profile" "mysql" {
+  name = "mysql"
+  role = "mysqlssmparameter"
+}
+
+resource "terraform_data" "mysql" {
+
+  triggers_replace = [
+    aws_instance.mysql.id
+  ]
+
+  connection {
+    type     = "ssh"
+    user     = "ec2-user"
+    password = "DevOps321"
+    host     = aws_instance.mysql.private_ip
+  }
+
+  # copy bootstrap script
+  provisioner "file" {
+    source      = "bootstrap.sh"
+    destination = "/tmp/bootstrap.sh"
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "chmod +x /tmp/bootstrap.sh",
+      "sudo sh /tmp/bootstrap.sh mysql dev"
+    ]
+  }
+}
+resource "aws_route53_record" "mysql" {
+  zone_id = var.zone_id
+  name    = "mysql-${var.environment}.${var.domain_name}" # mysql-dev.daws86s.fun
+  type    = "A"
+  ttl     = 1
+  records = [aws_instance.mysql.private_ip]
+  allow_overwrite = true
+}
