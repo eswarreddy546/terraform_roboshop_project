@@ -27,7 +27,8 @@ subnets = local.private_subnetsg
 #   }
 # }
 
-# Create the ALB Listener
+# Create the ALB Listener # Backend ALB listening on port number 80
+
 resource "aws_lb_listener" "loabalbbackendlistiner" {
   load_balancer_arn = aws_lb.backendalb.arn
   port              = "80"
