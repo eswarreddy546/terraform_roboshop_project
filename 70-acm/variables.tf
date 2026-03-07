@@ -7,7 +7,7 @@ variable "environment"{
 }
 
 variable "domain_name" {
-  default = "eswar.xyz"
+  default = "*.eswar.xyz"
 }
 
 variable "hosted_zone" {
