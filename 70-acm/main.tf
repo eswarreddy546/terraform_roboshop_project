@@ -20,7 +20,7 @@ resource "aws_route53_record" "roboshop" {
   records         = [each.value.record]
   ttl             = 1
   type            = each.value.type
-  zone_id         = var.hosted_zone.id
+  zone_id         = var.hosted_zone
 }
 
 resource "aws_acm_certificate_validation" "roboshops" {
