@@ -47,14 +47,14 @@ resource "aws_lb_listener" "frontend_https_listener" {
   }
 }
 
-# resource "aws_route53_record" "loadbalncerrecord" {
-#   zone_id = var.zoneid
-#   name    = "*.backend-dev.eswar.xyz"
-#   type    = "A"
+resource "aws_route53_record" "frontendbalncerrecord" {
+  zone_id = var.zoneid
+  name    = "roboshop-dev.eswar.xyz"
+  type    = "A"
 
-#   alias {
-#     name                   = aws_lb.backendalb.dns_name
-#     zone_id                = aws_lb.backendalb.zone_id
-#     evaluate_target_health = true
-#   }
-# }
+  alias {
+    name                   = aws_lb.frontend_alb.dns_name
+    zone_id                = aws_lb.frontend_alb.zone_id
+    evaluate_target_health = true
+  }
+}
