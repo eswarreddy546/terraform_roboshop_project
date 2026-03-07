@@ -14,7 +14,8 @@ variable "sgvalues" {
         "frontend",
         "bastionhost",
          "frontend_alb",
-         "backend_alb"
+         "backend_alb","frontend_alb_certificate_arn"
+
 
 
         
