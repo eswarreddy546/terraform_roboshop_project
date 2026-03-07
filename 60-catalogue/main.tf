@@ -96,7 +96,7 @@ resource "aws_autoscaling_group" "catalogue" {
 
   target_group_arns    = [aws_lb_target_group.catalogue.arn]
 
-  vpc_zone_identifier  = local.private_subnetsg.id
+vpc_zone_identifier = local.private_subnetsg
 
   health_check_grace_period = 90
   health_check_type         = "ELB"
