@@ -34,7 +34,7 @@ resource "aws_lb_listener" "frontend_https_listener" {
   protocol          = "HTTPS"
 
   ssl_policy      = "ELBSecurityPolicy-TLS13-1-2-2021-06"
-  certificate_arn = local.frontend_alb_certificate_arn_security_group_id.arn
+  certificate_arn = local.frontend_alb_certificate_arn
 
   default_action {
     type = "fixed-response"
