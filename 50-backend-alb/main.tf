@@ -44,7 +44,7 @@ subnets = local.private_subnetsg
 #   }
 # }
 
-resource "aws_route53_record" "www" {
+resource "aws_route53_record" "loadbalncerrecord" {
   zone_id = var.zoneid
   name    = "*.backend-alb-${var.environment}-${var.domainname}"
   type    = "A"
