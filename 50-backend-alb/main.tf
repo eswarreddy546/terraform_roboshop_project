@@ -46,7 +46,7 @@ subnets = local.private_subnetsg
 
 resource "aws_route53_record" "loadbalncerrecord" {
   zone_id = var.zoneid
-  name    = "*.backend-alb-${var.environment}-${var.domainname}"
+  name    = "*.backend-dev.eswar.xyz"
   type    = "A"
 
   alias {
